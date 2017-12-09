@@ -166,7 +166,7 @@ class Places365ResNetTrainer(object):
         # define Criterion and Optimizer--------------
         self.criterion = nn.CrossEntropyLoss()
 
-        self.optimizer = torch.optim.SGD(self.model.fc.parameters(),
+        self.optimizer = torch.optim.Adagrad(self.model.fc.parameters(),
                                          lr = self.args.lr,
                                          weight_decay=self.args.weight_decay)
         #---------------------------------------------
