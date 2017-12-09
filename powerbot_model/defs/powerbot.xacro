@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<robot        xmlns:xacro="http://ros.org/wiki/xacro" name="powerbot">
+
+<include filename="$(find powerbot_model)/defs/powerbot_body.xacro"/>
+
+<xacro:p3at_front suffix="left" reflect="1"/>
+<xacro:p3at_front suffix="right" reflect="-1"/>
+<xacro:p3at_back suffix="left" reflect="1"/>
+<xacro:p3at_back suffix="right" reflect="-1"/>
+<xacro:p3at_gazebo_ext/>
+
+
+</robot>

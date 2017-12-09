@@ -1,0 +1,14 @@
+<launch>
+ <!-- This code has been adapted from the p2os-purdue ROS code located at https://github.com/allenh1/p2os.git  -->
+ 
+	<include file="$(find powerbot_model)/launch/upload_powerbot.xml"/>
+
+  	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+
+    	<param name="publish_frequency" type="double" value="30.0"/>
+
+    	<param name="tf_prefix" type="string" value=""/>
+  	</node>
+
+	<node pkg="powerbot_model" type="publisher_powerbot" name="publisher"/>
+</launch>

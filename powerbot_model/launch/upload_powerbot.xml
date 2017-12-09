@@ -1,0 +1,6 @@
+<launch>
+  <!-- send table.xml to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find powerbot_model)/defs/powerbot.xacro" />
+
+</launch>
+

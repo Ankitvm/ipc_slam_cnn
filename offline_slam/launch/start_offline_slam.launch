@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="dataset" default="$(find offline_slam)/Datasets/REMP_DataSet/"/>
+  <arg name="nn" default="places365"/>
+
+
+  <!-- Robot description -->
+  <include file="$(find powerbot_model)/launch/powerbot_urdf.launch" />
+
+  <node pkg="offline_slam" type="start_offline_slam.py" name="start_offline_slam" args="--dataset $(arg dataset) --nn $(arg nn) " launch-prefix="xterm -e">
+  </node>  
+
+  <node pkg="tf" type="static_transform_publisher" name="sick_frame_tf" args="0.225 0  0    0 0  0.707 -0.707  base_link scan 100" />
+  <node pkg="tf" type="static_transform_publisher" name="odom_frame_tf" args="0     0  0    0 0  0         1            base_link odom             100" />
+  <node pkg="tf" type="static_transform_publisher" name="scan_frame_tf" args="0     0  0    0 0  0         1            scan      sick_point_cloud 100" />
+
+  <node pkg="topic_tools" type="relay" name="pt_cld_relay" args="/sick_point_cloud /cloud_in"/>
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+    <param name="angle_max" value="3.141628"/>
+    <param name="angle_min" value="0.0"/>
+  </node> 
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find offline_slam)/offline_viz.rviz"/>
+  
+</launch>
