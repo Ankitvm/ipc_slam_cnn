@@ -12,7 +12,7 @@
   </node>  
 
   <node pkg="tf" type="static_transform_publisher" name="sick_frame_tf" args="0.225 0  0    0 0  0.707 -0.707  base_link scan 100" />
-  <node pkg="tf" type="static_transform_publisher" name="odom_frame_tf" args="0     0  0    0 0  0         1            base_link odom             100" />
+  <node pkg="tf" type="static_transform_publisher" name="odom_frame_tf" args="0     0  0    0 0  0         1            odom      base_link        100" />
   <node pkg="tf" type="static_transform_publisher" name="scan_frame_tf" args="0     0  0    0 0  0         1            scan      sick_point_cloud 100" />
 
   <node pkg="topic_tools" type="relay" name="pt_cld_relay" args="/sick_point_cloud /cloud_in"/>
